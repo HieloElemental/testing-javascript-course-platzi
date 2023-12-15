@@ -20,6 +20,7 @@ describe('Test for math', () => {
       const res2 = divide(5, 2);
       expect(res2).toBe(2.5);
     });
+
     test('should divide for zero', () => {
       const res = divide(6, 0);
       expect(res).toBeNull();
