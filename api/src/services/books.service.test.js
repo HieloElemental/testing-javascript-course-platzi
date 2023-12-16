@@ -1,5 +1,5 @@
-const { generateManyBooks } = require('../fakes/book.fake');
 const BooksServices = require('./books.service');
+const { generateManyBooks } = require('../fakes/book.fake');
 
 const mockGetAll = jest.fn();
 

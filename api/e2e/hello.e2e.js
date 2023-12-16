@@ -7,11 +7,11 @@ describe('Test for / endpoint', () => {
   let server = null;
   beforeAll(() => {
     app = createApp();
-    server = app.listen(3001);
+    server = app.listen(3002);
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async () => {
+    await server.close();
   });
 
   describe('test for [GET] /', () => {
