@@ -31,7 +31,6 @@ jobs:
         shell: bash
         run: npm run test
 
-jobs:
   linter-test:
     runs-on: ubuntu-latest
     steps:
