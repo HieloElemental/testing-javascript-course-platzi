@@ -1,7 +1,7 @@
 name: API CI
 
 #on: [push]
-on: 
+on:
   push:
     paths:
       - "./api/**"
@@ -13,6 +13,23 @@ defaults:
     working-directory: ./api
 
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'npm'
+          cache-dependency-path: ./api/package-lock.json
+      - name: install
+        shell: bash
+        run: npm ci
+      - name: run linter
+        shell: bash
+        run: npm run lint
   unit-test:
     runs-on: ubuntu-latest
     steps:
@@ -20,41 +37,22 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Nodejs
         uses: actions/setup-node@v2
-        with: 
-          node-versiom: 14
+        with:
+          node-version: 14
           cache: 'npm'
           cache-dependency-path: ./api/package-lock.json
-      - name: Install
+      - name: install
         shell: bash
         run: npm ci
       - name: run unit test
         shell: bash
         run: npm run test
-
-  linter-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Nodejs
-        uses: actions/setup-node@v2
-        with: 
-          node-versiom: 14
-          cache: 'npm'
-          cache-dependency-path: ./api/package-lock.json
-      - name: Install
-        shell: bash
-        run: npm ci
-      - name: run unit test
-        shell: bash
-        run: npm run lint
-
-  e2e-test:
+  e2e:
     runs-on: ubuntu-latest
     container:
       image: node:14
-      
-    services: 
+
+    services:
       mongo-e2e:
         image: mongo:4.4
         ports:
@@ -62,20 +60,14 @@ jobs:
         env:
           MONGO_INITDB_ROOT_USERNAME: test
           MONGO_INITDB_ROOT_PASSWORD: test123
-        
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Nodejs
-        uses: actions/setup-node@v2
-        with: 
-          node-versiom: 14
-          cache: 'npm'
-          cache-dependency-path: ./api/package-lock.json
-      - name: Install
+      - name: install
         shell: bash
         run: npm ci
-      - name: run e2e tests
+      - name: run e2e
         shell: bash
         run: npm run test:e2e
         env:
