@@ -21,7 +21,7 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v2
         with: 
-          node-versiom: 14
+          node-version: 18
           cache: 'npm'
           cache-dependency-path: ./api/package-lock.json
       - name: Install
@@ -39,7 +39,7 @@ jobs:
       - name: Setup Nodejs
         uses: actions/setup-node@v2
         with: 
-          node-versiom: 14
+          node-version: 18
           cache: 'npm'
           cache-dependency-path: ./api/package-lock.json
       - name: Install
