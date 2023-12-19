@@ -67,7 +67,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
-        shell: bash
+        shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
         run: npm ci
       - name: run end-to-end tests
         shell: bash
