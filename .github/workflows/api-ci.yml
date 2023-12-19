@@ -53,7 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:14
-      
     services:
       mongo-e2e:
         image: mongo:4.4
@@ -62,10 +61,15 @@ jobs:
         env:
           MONGO_INITDB_ROOT_USERNAME: test
           MONGO_INITDB_ROOT_PASSWORD: test123
-        
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with: 
+          node-versiom: 14
+          cache: 'npm'
+          cache-dependency-path: ./api/package-lock.json
       - name: Install
         shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
         run: npm ci
