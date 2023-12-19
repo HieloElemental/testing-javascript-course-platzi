@@ -52,7 +52,7 @@ jobs:
   end-to-end-test:
     runs-on: ubuntu-latest
     container:
-      image: node:14
+      image: node:18
     services:
       mongo-e2e:
         image: mongo:4.4
@@ -64,12 +64,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Nodejs
-        uses: actions/setup-node@v2
-        with: 
-          node-versiom: 14
-          cache: 'npm'
-          cache-dependency-path: ./api/package-lock.json
       - name: Install
         shell: bash
         run: npm ci
