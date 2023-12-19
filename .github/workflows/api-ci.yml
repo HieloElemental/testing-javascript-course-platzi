@@ -74,4 +74,4 @@ jobs:
         run: npm run test:e2e
         env:
           MONGO_DB_NAME: demo
-          MONGO_URL: mongodb://test:test123@mongo-e2e:270117?retryWrites=true&writeConcern=majority
+          MONGO_URL: mongodb://test:test123@mongo-e2e:27017?retryWrites=true&writeConcern=majority
