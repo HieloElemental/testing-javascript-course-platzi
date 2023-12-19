@@ -49,7 +49,7 @@ jobs:
         shell: bash
         run: npm run lint
 
-  e2e-test:
+  end-to-end-test:
     runs-on: ubuntu-latest
     container:
       image: node:14
@@ -68,10 +68,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install
         shell: bash
-        run: |
-          npm ci
-          cat /github/home/.npm/_logs/2023-12-19T01_11_11_754Z-debug.log
-      - name: run e2e tests
+        run: npm ci
+      - name: run end-to-end tests
         shell: bash
         run: npm run test:e2e
         env:
