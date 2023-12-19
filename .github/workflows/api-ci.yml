@@ -71,7 +71,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./api/package-lock.json
       - name: Install
-        shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+        shell: bash
         run: npm ci
       - name: run end-to-end tests
         shell: bash
